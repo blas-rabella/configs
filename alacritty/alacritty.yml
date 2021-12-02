@@ -1,0 +1,218 @@
+background_opacity: 0.8
+# Font configuration (changes require restart)
+font:
+  # The normal (roman) font face to use.
+  # Style can be specified to pick a specific face.
+  normal:
+    family: "Iosevka Nerd Font"
+    style: Medium
+    # family: "Fira Code"
+    # family: "Source Code Pro"
+    # style: Retina
+
+  # The bold font face
+  bold:
+    family: Iosevka
+    style: Bold
+    # family: "Fira Code"
+    # family: "Source Code Pro"
+
+  # The italic font face
+  italic:
+    family: Iosevka
+    style: "Medium Italic"
+    # style: "Light Oblique"
+    # family: "Fira Code"
+    # family: "Source Code Pro"
+    # style: "Medium Italic"
+
+  # Point size of the font
+  size: 8.0
+
+  # Offset is the extra space around each character. offset.y can be thought of
+  # as modifying the linespacing, and offset.x as modifying the letter spacing.
+  offset:
+    x: 0
+    y: 0
+
+  # Glyph offset determines the locations of the glyphs within their cells with
+  # the default being at the bottom. Increase the x offset to move the glyph to
+  # the right, increase the y offset to move the glyph upward.
+  glyph_offset:
+    x: 0
+    y: 0
+
+  # Thin stroke font rendering (macOS only)
+  #
+  # Thin strokes are suitable for retina displays, but for non-retina you
+  # probably want this set to false.
+  #
+  # macOS >= 10.14.x:
+  #
+  # If the font quality on non-retina display looks bad then set
+  # `use_thin_strokes` to `true` and enable font smoothing by running the
+  # following command:
+  #   `defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO`
+  #
+  # This is a global setting and will require a log out or restart to take
+  # effect.
+  use_thin_strokes: false
+
+# When true, bold text is drawn using the bright variant of colors.
+draw_bold_text_with_bright_colors: false
+
+# Use custom cursor colors. If true, display the cursor in the cursor.foreground
+# and cursor.background colors, otherwise invert the colors of the cursor.
+custom_cursor_colors: true
+
+colors:
+  primary:
+    background: '#2e3440'
+    foreground: '#d8dee9'
+    dim_foreground: '#a5abb6'
+  cursor:
+    text: '#2e3440'
+    cursor: '#d8dee9'
+  vi_mode_cursor:
+    text: '#2e3440'
+    cursor: '#d8dee9'
+  selection:
+    text: CellForeground
+    background: '#4c566a'
+  search:
+    matches:
+      foreground: CellBackground
+      background: '#88c0d0'
+    bar:
+      background: '#434c5e'
+      foreground: '#d8dee9'
+  normal:
+    black: '#3b4252'
+    red: '#bf616a'
+    green: '#a3be8c'
+    yellow: '#ebcb8b'
+    blue: '#81a1c1'
+    magenta: '#b48ead'
+    cyan: '#88c0d0'
+    white: '#e5e9f0'
+  bright:
+    black: '#4c566a'
+    red: '#bf616a'
+    green: '#a3be8c'
+    yellow: '#ebcb8b'
+    blue: '#81a1c1'
+    magenta: '#b48ead'
+    cyan: '#8fbcbb'
+    white: '#eceff4'
+  dim:
+    black: '#373e4d'
+    red: '#94545d'
+    green: '#809575'
+    yellow: '#b29e75'
+    blue: '#68809a'
+    magenta: '#8c738c'
+    cyan: '#6d96a5'
+    white: '#aeb3bb'
+
+
+mouse:
+  # Click settings
+  #
+  # The `double_click` and `triple_click` settings control the time
+  # alacritty should wait for accepting multiple clicks as one double
+  # or triple click.
+  double_click: { threshold: 300 }
+  triple_click: { threshold: 300 }
+
+  # If this is `true`, the cursor is temporarily hidden when typing.
+  hide_when_typing: true
+
+  # URL launcher
+  # url:
+    # This program is executed when clicking on a text which is recognized as a URL.
+    # The URL is always added to the command as the last parameter.
+    #
+    # When set to `None`, URL launching will be disabled completely.
+    #
+    # Default:
+    #   - (macOS) open
+    #   - (Linux) xdg-open
+    #   - (Windows) explorer
+    # launcher:
+    #   program: xdg-open
+    #   args: []
+
+    # These are the modifiers that need to be held down for opening URLs when clicking
+    # on them. The available modifiers are documented in the key binding section.
+    # modifiers: Control|Shift
+
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>"
+
+  # When set to `true`, selected text will be copied to the primary clipboard.
+  save_to_clipboard: false
+
+# Mouse bindings
+#
+# Available fields:
+# - mouse
+# - action
+# - mods (optional)
+#
+# Values for `mouse`:
+# - Middle
+# - Left
+# - Right
+# - Numeric identifier such as `5`
+#
+# All available `mods` and `action` values are documented in the key binding
+# section.
+mouse_bindings:
+  - { mouse: Middle, action: PasteSelection }
+
+cursor:
+  # Cursor style
+  #
+  # Values for 'style':
+  #   - ▇ Block
+  #   - _ Underline
+  #   - | Beam
+  style: Block
+
+  # If this is `true`, the cursor will be rendered as a hollow box when the
+  # window is not focused.
+  unfocused_hollow: true
+
+# dynamic_title: false
+
+# Live config reload (changes require restart)
+live_config_reload: true
+
+debug:
+  # Should display the render timer
+  render_timer: false
+
+  # Keep the log file after quitting Alacritty.
+  persistent_logging: false
+
+  # Log level
+  #
+  # Values for `log_level`:
+  #   - OFF
+  #   - ERROR
+  #   - WARN
+  #   - INFO
+  #   - DEBUG
+  #   - TRACE
+  log_level: OFF
+
+  # Print all received window events.
+  print_events: false
+
+  # Record all characters and escape sequences as test data.
+  ref_test: false
+
+key_bindings:
+  - { key: Equals,   mods: Command,       action: IncreaseFontSize             }
+  - { key: Minus,    mods: Command,       action: DecreaseFontSize             }
+  - { key: Minus,    mods: Command|Shift, action: ResetFontSize                }
