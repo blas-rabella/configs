@@ -18,20 +18,73 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+Plug 'lewis6991/gitsigns.nvim'
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
 Plug 'arcticicestudio/nord-vim'
+Plug 'stevearc/dressing.nvim'
+Plug 'nvim-lualine/lualine.nvim'
+" If you want to have icons in your statusline choose one of these
+Plug 'kyazdani42/nvim-web-devicons'
 
 Plug 'docker/docker', {'rtp': '/contrib/syntax/vim/'}
 Plug 'derekwyatt/vim-scala'
+Plug 'neovimhaskell/haskell-vim'
 
 Plug 'vale1410/vim-minizinc'
 " Initialize plugin system
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'folke/which-key.nvim'
 call plug#end()
 
-colorscheme nord
+set termguicolors
+lua << EOF
+require("which-key").setup()
+require('lualine').setup {
+  options = {
+    -- ... your lualine config
+    theme = 'tokyonight'
+    -- ... your lualine config
+  }
+}
+require'nvim-treesitter.configs'.setup {
+  -- One of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = "maintained",
 
+  -- Install languages synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- List of parsers to ignore installing
+  ignore_install = { "javascript" },
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+
+    -- list of language that will be disabled
+    disable = { "c" },
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
+
+" syntax on	
+
+let g:tokyonight_style = "storm"
+colorscheme tokyonight
+filetype plugin indent on
+set number
+let mapleader = " " " map leader to Space
 " Required for operations modifying multiple buffers like rename.
 " COC
 " TextEdit might fail if hidden is not set.
@@ -196,3 +249,8 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
